@@ -3,6 +3,7 @@ using MessagePipe;
 
 namespace akanevrc.TowerDefence
 {
+    [Handler]
     public class GameHandler : IDisposable
     {
         private ISubscriber<ModelLoopEvent> _modelLoopSub;

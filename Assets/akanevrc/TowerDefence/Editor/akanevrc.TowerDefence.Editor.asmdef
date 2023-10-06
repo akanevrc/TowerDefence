@@ -1,0 +1,18 @@
+{
+    "name": "akanevrc.TowerDefence.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:0210399ca1eed0f4782a0f13898181ff"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

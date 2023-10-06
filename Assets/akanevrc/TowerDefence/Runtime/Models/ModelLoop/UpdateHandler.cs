@@ -3,6 +3,7 @@ using MessagePipe;
 
 namespace akanevrc.TowerDefence
 {
+    [Handler]
     public class UpdateHandler : IDisposable
     {
         private MainConfig _mainConfig;

@@ -8,35 +8,20 @@ using VContainer.Unity;
 
 namespace akanevrc.TowerDefence
 {
-    public class MainEntryPoint : IAsyncStartable, ITickable, IDisposable
+    public partial class MainEntryPoint : IAsyncStartable, ITickable, IDisposable
     {
-        private readonly IObjectResolver _resolver;
-        private readonly UpdateHandler _updateHandler;
-        private readonly GameHandler _gameHandler;
-        private readonly IPublisher<UpdateEvent> _updatePub;
+        [Inject] private readonly IObjectResolver _resolver;
+        [Inject] private readonly IPublisher<UpdateEvent> _updatePub;
 
         private readonly DisposableBagBuilder _disposables = DisposableBag.CreateBuilder();
         private bool _disposed = false;
 
-        public MainEntryPoint
-        (
-            IObjectResolver resolver,
-            UpdateHandler updateHandler,
-            GameHandler gameHandler,
-            IPublisher<UpdateEvent> updatePub
-        )
-        {
-            _resolver = resolver;
-            _updateHandler = updateHandler;
-            _gameHandler = gameHandler;
-            _updatePub = updatePub;
-
-            _disposables.Add(_updateHandler);
-            _disposables.Add(_gameHandler);
-        }
+        private partial void HoldHandlers();
 
         public async UniTask StartAsync(CancellationToken cancellationToken)
         {
+            HoldHandlers();
+
             await UniTask.Yield();
         }
 
