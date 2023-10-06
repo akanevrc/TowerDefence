@@ -7,7 +7,6 @@ namespace akanevrc.TowerDefence
     {
         protected override void Configure(IContainerBuilder builder)
         {
-            UnityEngine.Debug.Log("RootLifetimeScope.Configure");
         }
     }
 }

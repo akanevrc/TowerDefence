@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentReference:
-    TypeName: akanevrc.TowerDefence.Runtime.VContainer.RootLifetimeScope
+    TypeName: 
   autoRun: 1
   autoInjectGameObjects: []
+  _mainConfig: {fileID: 11400000, guid: a4e5867a4a40e6d4f803c24dda47bfa3, type: 2}
