@@ -5,7 +5,7 @@ using MessagePipe;
 using VContainer;
 using VContainer.Unity;
 
-namespace akanevrc.TowerDefence.Runtime.VContainer
+namespace akanevrc.TowerDefence
 {
     public class MainEntryPoint : IAsyncStartable, ITickable, IDisposable
     {
