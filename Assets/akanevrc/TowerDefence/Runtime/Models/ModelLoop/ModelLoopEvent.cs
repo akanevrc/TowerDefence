@@ -2,7 +2,7 @@
 namespace akanevrc.TowerDefence
 {
     [Message]
-    public struct ModelLoopEvent
+    public readonly struct ModelLoopEvent
     {
         public float DeltaSecond { get; }
 
