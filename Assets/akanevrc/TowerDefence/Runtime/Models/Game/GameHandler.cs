@@ -8,7 +8,7 @@ namespace akanevrc.TowerDefence
     {
         private ISubscriber<ModelLoopEvent> _modelLoopSub;
 
-        private DisposableBagBuilder _disposables = DisposableBag.CreateBuilder();
+        private readonly DisposableBagBuilder _disposables = DisposableBag.CreateBuilder();
         private bool _disposed = false;
 
         public GameHandler(ISubscriber<ModelLoopEvent> modelLoopSub)

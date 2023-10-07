@@ -11,7 +11,7 @@ namespace akanevrc.TowerDefence
         private IPublisher<ModelLoopEvent> _modelLoopPub;
 
         private float _remainingSecond = 0.0F;
-        private DisposableBagBuilder _disposables = DisposableBag.CreateBuilder();
+        private readonly DisposableBagBuilder _disposables = DisposableBag.CreateBuilder();
         private bool _disposed = false;
 
         public UpdateHandler(MainConfig mainConfig, ISubscriber<UpdateEvent> updateSub, IPublisher<ModelLoopEvent> modelLoopPub)
