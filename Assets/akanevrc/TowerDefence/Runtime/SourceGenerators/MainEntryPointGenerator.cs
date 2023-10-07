@@ -19,9 +19,10 @@ namespace akanevrc.TowerDefence
     {{{
         string.Join("", handlers.Select(handler => $@"{Environment.NewLine}        [Inject] private {handler.Name} {handler.GetVarName()};"))
     }
-    
+
         private partial void HoldHandlers()
         {{{
+            string.Join("", handlers.Select(handler => $@"{Environment.NewLine}            {handler.GetVarName()}.Init();")) +
             string.Join("", handlers.Select(handler => $@"{Environment.NewLine}            _disposables.Add({handler.GetVarName()});"))
         }
         }}

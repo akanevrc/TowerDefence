@@ -1,26 +1,23 @@
 using System;
 using MessagePipe;
+using VContainer;
 
 namespace akanevrc.TowerDefence
 {
     [Handler]
     public class UpdateHandler : IDisposable
     {
-        private MainConfig _mainConfig;
-        private ISubscriber<UpdateEvent> _updateSub;
-        private IPublisher<ModelLoopEvent> _modelLoopPub;
+        [Inject] private MainConfig _mainConfig;
+        [Inject] private ISubscriber<UpdateEvent> _updateSub;
+        [Inject] private IPublisher<ModelLoopEvent> _modelLoopPub;
 
         private float _remainingSecond = 0.0F;
         private readonly DisposableBagBuilder _disposables = DisposableBag.CreateBuilder();
         private bool _disposed = false;
 
-        public UpdateHandler(MainConfig mainConfig, ISubscriber<UpdateEvent> updateSub, IPublisher<ModelLoopEvent> modelLoopPub)
+        public void Init()
         {
-            _mainConfig = mainConfig;
-            _updateSub = updateSub;
-            _modelLoopPub = modelLoopPub;
-
-            _updateSub?.Subscribe(OnUpdate).AddTo(_disposables);
+            _updateSub.Subscribe(OnUpdate).AddTo(_disposables);
         }
 
         private void OnUpdate(UpdateEvent ev)
@@ -31,7 +28,7 @@ namespace akanevrc.TowerDefence
 
             for (var i = 0; i < loopCount; i++)
             {
-                _modelLoopPub?.Publish(new ModelLoopEvent(modelLoopPeriod));
+                _modelLoopPub.Publish(new ModelLoopEvent(modelLoopPeriod));
             }
         }
 

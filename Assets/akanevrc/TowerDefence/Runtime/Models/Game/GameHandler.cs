@@ -1,21 +1,20 @@
 using System;
 using MessagePipe;
+using VContainer;
 
 namespace akanevrc.TowerDefence
 {
     [Handler]
     public class GameHandler : IDisposable
     {
-        private ISubscriber<ModelLoopEvent> _modelLoopSub;
+        [Inject] private ISubscriber<ModelLoopEvent> _modelLoopSub;
 
         private readonly DisposableBagBuilder _disposables = DisposableBag.CreateBuilder();
         private bool _disposed = false;
 
-        public GameHandler(ISubscriber<ModelLoopEvent> modelLoopSub)
+        public void Init()
         {
-            _modelLoopSub = modelLoopSub;
-
-            _modelLoopSub?.Subscribe(OnModelLoop).AddTo(_disposables);
+            _modelLoopSub.Subscribe(OnModelLoop).AddTo(_disposables);
         }
 
         private void OnModelLoop(ModelLoopEvent ev)
