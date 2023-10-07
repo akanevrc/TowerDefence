@@ -16,20 +16,19 @@ using VContainer;
 namespace akanevrc.TowerDefence
 {{
     public partial class MainEntryPoint
-    {{{string.Join("", handlers.Select(handler => $@"{Environment.NewLine}        [Inject] private {handler.Name} {GetFieldName(handler)};"))}
-
+    {{{
+        string.Join("", handlers.Select(handler => $@"{Environment.NewLine}        [Inject] private {handler.Name} {handler.GetVarName()};"))
+    }
+    
         private partial void HoldHandlers()
-        {{{string.Join("", handlers.Select(handler => $@"{Environment.NewLine}            _disposables.Add({GetFieldName(handler)});"))}
+        {{{
+            string.Join("", handlers.Select(handler => $@"{Environment.NewLine}            _disposables.Add({handler.GetVarName()});"))
+        }
         }}
     }}
 }}
 ";
             return source.ToString();
-        }
-        
-        private static string GetFieldName(Type type)
-        {
-            return $"_{char.ToLower(type.Name[0])}{type.Name[1..]}";
         }
     }
 }
