@@ -4,11 +4,11 @@ namespace akanevrc.TowerDefence
     [Message]
     public readonly struct ModelLoopEvent
     {
-        public float DeltaSecond { get; }
+        public float DeltaTime { get; }
 
-        public ModelLoopEvent(float deltaSecond)
+        public ModelLoopEvent(float deltaTime)
         {
-            DeltaSecond = deltaSecond;
+            DeltaTime = deltaTime;
         }
     }
 }

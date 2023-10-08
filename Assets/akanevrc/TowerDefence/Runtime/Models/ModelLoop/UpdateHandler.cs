@@ -11,7 +11,7 @@ namespace akanevrc.TowerDefence
         [Inject] private ISubscriber<UpdateEvent> _updateSub;
         [Inject] private IPublisher<ModelLoopEvent> _modelLoopPub;
 
-        private float _remainingSecond = 0.0F;
+        private float _remainingTime = 0.0F;
         private readonly DisposableBagBuilder _disposables = DisposableBag.CreateBuilder();
         private bool _disposed = false;
 
@@ -23,8 +23,8 @@ namespace akanevrc.TowerDefence
         private void OnUpdate(UpdateEvent ev)
         {
             var modelLoopPeriod = _mainConfig.ModelLoopFrequency;
-            var loopCount = (int)((_remainingSecond + ev.DeltaSecond) / modelLoopPeriod);
-            _remainingSecond = (_remainingSecond + ev.DeltaSecond) % modelLoopPeriod;
+            var loopCount = (int)((_remainingTime + ev.DeltaTime) / modelLoopPeriod);
+            _remainingTime = (_remainingTime + ev.DeltaTime) % modelLoopPeriod;
 
             for (var i = 0; i < loopCount; i++)
             {
