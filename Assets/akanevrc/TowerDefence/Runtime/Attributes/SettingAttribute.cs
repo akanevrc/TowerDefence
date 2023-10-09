@@ -2,8 +2,11 @@ using System;
 
 namespace akanevrc.TowerDefence
 {
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
-    public class SettingAttribute : Attribute
+    public class SettingAttribute : TypeAttribute
     {
+        public SettingAttribute(Type type)
+            : base(type)
+        {
+        }
     }
 }

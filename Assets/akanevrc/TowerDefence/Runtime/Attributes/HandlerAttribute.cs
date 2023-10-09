@@ -2,8 +2,11 @@ using System;
 
 namespace akanevrc.TowerDefence
 {
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
-    public class HandlerAttribute : Attribute
+    public class HandlerAttribute : TypeAttribute
     {
+        public HandlerAttribute(Type type)
+            : base(type)
+        {
+        }
     }
 }

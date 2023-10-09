@@ -17,10 +17,10 @@ namespace akanevrc.TowerDefence
 {{
     public partial class MainEntryPoint
     {{{
-        string.Join("", handlers.Select(handler => $@"{Environment.NewLine}        [Inject] private {handler.Name} {handler.GetVarName()};"))
+        string.Join("", handlers.Select(handler => $@"{Environment.NewLine}        [Inject] private {handler.GetTypeName()} {handler.GetVarName()};"))
     }
 
-        private partial void HoldHandlers()
+        partial void HoldHandlers()
         {{{
             string.Join("", handlers.Select(handler => $@"{Environment.NewLine}            {handler.GetVarName()}.Init();")) +
             string.Join("", handlers.Select(handler => $@"{Environment.NewLine}            _disposables.Add({handler.GetVarName()});"))

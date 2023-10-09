@@ -21,18 +21,18 @@ namespace akanevrc.TowerDefence
 {{
     public partial class MainLifetimeScope
     {{{
-        string.Join("", settings.Select(setting => $@"{Environment.NewLine}        [SerializeField] private {setting.Name} {setting.GetVarName()};"))
+        string.Join("", settings.Select(setting => $@"{Environment.NewLine}        [SerializeField] private {setting.GetTypeName()} {setting.GetVarName()};"))
     }
 
         protected override void Configure(IContainerBuilder builder)
         {{{
             string.Join("", settings.Select(setting => $@"{Environment.NewLine}            builder.RegisterInstance({setting.GetVarName()});"))
         }{
-            string.Join("", handlers.Select(handler => $@"{Environment.NewLine}            builder.Register<{handler.Name}>(Lifetime.Scoped);"))
+            string.Join("", handlers.Select(handler => $@"{Environment.NewLine}            builder.Register<{handler.GetTypeName()}>(Lifetime.Scoped);"))
         }{
             string.Join("", messages.Select((message, i) => {
                 var optionDef = i == 0 ? $@"{Environment.NewLine}            var options = builder.RegisterMessagePipe();" : "";
-                return $@"{optionDef}{Environment.NewLine}            builder.RegisterMessageBroker<{message.Name}>(options);";
+                return $@"{optionDef}{Environment.NewLine}            builder.RegisterMessageBroker<{message.GetTypeName()}>(options);";
             }))
         }
             builder.RegisterEntryPoint<MainEntryPoint>();

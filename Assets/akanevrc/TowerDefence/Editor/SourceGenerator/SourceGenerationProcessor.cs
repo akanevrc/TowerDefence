@@ -25,7 +25,7 @@ namespace akanevrc.TowerDefence.Editor
             {
                 foreach (var type in assembly.GetTypes())
                 {
-                    if (type.HasAttribute<SourceGeneratorAttribute>())
+                    if (type.GetCustomAttributes(typeof(SourceGeneratorAttribute), false).Length > 0)
                     {
                         pathAndCode.Add(GenerateSource(type));
                     }

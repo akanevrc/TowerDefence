@@ -16,7 +16,7 @@ namespace akanevrc.TowerDefence
         private readonly DisposableBagBuilder _disposables = DisposableBag.CreateBuilder();
         private bool _disposed = false;
 
-        private partial void HoldHandlers();
+        partial void HoldHandlers();
 
         public async UniTask StartAsync(CancellationToken cancellationToken)
         {

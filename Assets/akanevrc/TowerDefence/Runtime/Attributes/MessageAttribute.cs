@@ -2,8 +2,11 @@ using System;
 
 namespace akanevrc.TowerDefence
 {
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = false, Inherited = false)]
-    public class MessageAttribute : Attribute
+    public class MessageAttribute : TypeAttribute
     {
+        public MessageAttribute(Type type)
+            : base(type)
+        {
+        }
     }
 }
