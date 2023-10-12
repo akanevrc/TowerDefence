@@ -6,7 +6,7 @@ namespace akanevrc.TowerDefence
     public struct EnemySeries
     {
         public float SpawnTime;
-        public int Kind;
+        public EnemySetting.EnemyKind Kind;
         public float Interval;
         public int Count;
     }
