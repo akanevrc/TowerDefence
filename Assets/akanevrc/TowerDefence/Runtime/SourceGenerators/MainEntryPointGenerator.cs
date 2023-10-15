@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 
 namespace akanevrc.TowerDefence
@@ -8,22 +7,46 @@ namespace akanevrc.TowerDefence
     {
         public static string Generate()
         {
+            var settingStores = TypeAttributeUtil.GetAllTypesWithAttribute<SettingStoreAttribute>();
+            var settingss = TypeAttributeUtil.GetAllTypesWithAttribute<SettingsAttribute>();
             var handlers = TypeAttributeUtil.GetAllTypesWithAttribute<HandlerAttribute>();
             var source =
-$@"using MessagePipe;
-using VContainer;
+$@"using VContainer;
 
 namespace akanevrc.TowerDefence
 {{
     public partial class MainEntryPoint
-    {{{
-        string.Join("", handlers.Select(handler => $@"{Environment.NewLine}        [Inject] private {handler.GetTypeName()} {handler.GetVarName()};"))
+    {{
+        [Inject] private IObjectResolver _resolver;
+    {
+        settingStores
+        .Select(settingStore => $@"[Inject] private {settingStore.GetTypeName()} {settingStore.GetSettingStoreVarName()};")
+        .ToLines(8)
+    }{
+        settingss
+        .Select(settings => $@"[Inject] private {settings.GetTypeName()}[] {settings.GetArrayVarName()};")
+        .ToLines(8)
+    }{
+        handlers
+        .Select(handler => $@"[Inject] private {handler.GetTypeName()} {handler.GetVarName()};")
+        .ToLines(8)
     }
 
-        partial void HoldHandlers()
+        partial void Init()
         {{{
-            string.Join("", handlers.Select(handler => $@"{Environment.NewLine}            {handler.GetVarName()}.Init();")) +
-            string.Join("", handlers.Select(handler => $@"{Environment.NewLine}            _disposables.Add({handler.GetVarName()});"))
+            settingStores.Join
+            (
+                settingss,
+                settingStore => settingStore.GetGenericArguments()[1],
+                settings => settings,
+                (settingStore, settings) =>
+                    $@"if ({settings.GetArrayVarName()} != null) {settingStore.GetSettingStoreVarName()}?.Init({settings.GetArrayVarName()});"
+            )
+            .ToLines(12)
+        }{
+            handlers
+            .Select(handler => $@"{handler.GetVarName()}?.Init();")
+            .ToLines(12)
         }
         }}
     }}

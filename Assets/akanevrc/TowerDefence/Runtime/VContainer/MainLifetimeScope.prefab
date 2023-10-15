@@ -45,7 +45,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentReference:
-    TypeName: 
-  autoRun: 1
+    TypeName: akanevrc.TowerDefence.RootLifetimeScope
+  autoRun: 0
   autoInjectGameObjects: []
   _mainConfig: {fileID: 11400000, guid: a4e5867a4a40e6d4f803c24dda47bfa3, type: 2}
+  _enemySettings:
+  - {fileID: 11400000, guid: 2218de6c64725b1489043015b80ee016, type: 2}
+  _goalSettings:
+  - {fileID: 11400000, guid: f94ae561ea0d53b4ba8569fb1e8f9374, type: 2}
+  _pedestalSettings:
+  - {fileID: 11400000, guid: 3916c76c4b31a9d4f89c6e72a48d239d, type: 2}
+  - {fileID: 11400000, guid: 9eb59ba9923d8bf46a06749ac0e6b8de, type: 2}
+  _stageSettings:
+  - {fileID: 11400000, guid: 6d75e49e55535834986c0162a2b1d0dd, type: 2}
+  _enemyWaveSettings:
+  - {fileID: 11400000, guid: b287cf7488056dc4ea4a52cbb08c88b7, type: 2}
+  - {fileID: 11400000, guid: a3daca6f56bc50745b55271fa24c83bf, type: 2}
+  _bulletSettings:
+  - {fileID: 11400000, guid: d99bf56a2796531469611cd4452f19b8, type: 2}
+  _unitSettings:
+  - {fileID: 11400000, guid: 5ba824ff58f5c2c49aa37f311ca16796, type: 2}

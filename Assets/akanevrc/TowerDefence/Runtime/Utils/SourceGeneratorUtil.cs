@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -8,9 +9,10 @@ namespace akanevrc.TowerDefence
     {
         public static string GetTypeName(this Type type)
         {
-            return type.GenericTypeArguments.Length == 0 ?
-                GetName(type) :
-                $"{GetName(type)}<{string.Join(", ", type.GenericTypeArguments.Select(t => t.GetTypeName()))}>";
+            return
+                (type.DeclaringType == null ? "" : $"{GetTypeName(type.DeclaringType)}.") +
+                GetName(type) +
+                (type.IsGenericType ? $"<{string.Join(", ", type.GenericTypeArguments.Select(t => t.GetTypeName()))}>" : "");
         }
 
         public static string GetVarName(this Type type)
@@ -19,9 +21,24 @@ namespace akanevrc.TowerDefence
             return $"_{char.ToLower(name[0])}{name[1..]}";
         }
 
+        public static string GetArrayVarName(this Type type)
+        {
+            return $"{type.GetVarName()}s";
+        }
+
+        public static string GetSettingStoreVarName(this Type type)
+        {
+            return $"{type.GetGenericArguments()[1].GetVarName()}Store";
+        }
+
         private static string GetName(Type type)
         {
-            return Regex.Replace(type.Name, @"(.+\+)?(.+?)(`.+)?", "$2");
+            return Regex.Replace(type.Name, @"(.+\+)*(.+?)(`.+)?", "$2");
+        }
+
+        public static string ToLines(this IEnumerable<string> sources, int indent)
+        {
+            return string.Join("", sources.Select(source => $"{Environment.NewLine}{new string(' ', indent)}{source}"));
         }
     }
 }

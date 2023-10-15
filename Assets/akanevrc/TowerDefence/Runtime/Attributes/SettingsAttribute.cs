@@ -2,9 +2,9 @@ using System;
 
 namespace akanevrc.TowerDefence
 {
-    public class SettingStoreAttribute : TypeAttribute
+    public class SettingsAttribute : TypeAttribute
     {
-        public SettingStoreAttribute(Type type)
+        public SettingsAttribute(Type type)
             : base(type)
         {
         }
