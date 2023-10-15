@@ -3,6 +3,7 @@ using UnityEngine;
 namespace akanevrc.TowerDefence
 {
     [CreateAssetMenu(menuName = "ScriptableObjects/PedestalSetting")]
+    [Setting(typeof(PedestalSetting))]
     public class PedestalSetting : ScriptableObject, ISetting<PedestalSetting.PedestalKind>
     {
         public enum PedestalKind

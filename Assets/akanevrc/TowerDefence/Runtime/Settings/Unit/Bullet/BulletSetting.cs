@@ -3,6 +3,7 @@ using UnityEngine;
 namespace akanevrc.TowerDefence
 {
     [CreateAssetMenu(menuName = "ScriptableObjects/BulletSetting")]
+    [Setting(typeof(BulletSetting))]
     public class BulletSetting : ScriptableObject, ISetting<BulletSetting.BulletKind>
     {
         public enum BulletKind
