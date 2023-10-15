@@ -3,12 +3,12 @@ using UnityEngine;
 namespace akanevrc.TowerDefence
 {
     [CreateAssetMenu(menuName = "ScriptableObjects/WaveSetting")]
-    public class EnemyWaveSetting : ScriptableObject
+    public class EnemyWaveSetting : ScriptableObject, ISetting<WaveNumber>
     {
-        [SerializeField] private WaveNumber _waveNumber;
+        [SerializeField] private WaveNumber _kind;
         [SerializeField] private EnemySeries[] _enemySeries;
 
-        public WaveNumber WaveNumber => _waveNumber;
+        public WaveNumber Kind => _kind;
         public EnemySeries[] EnemySeries => _enemySeries;
     }
 }

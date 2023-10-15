@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2342b82208dbeaa438412309cebfd346, type: 3}
   m_Name: Wave_01_01_02
   m_EditorClassIdentifier: 
-  _waveNumber:
+  _kind:
     World: 1
     Stage: 1
     Wave: 2

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 707c677bd65685547bec5a4f8246a015, type: 3}
   m_Name: Stage_01_01
   m_EditorClassIdentifier: 
-  _stageNumber:
+  _kind:
     World: 1
     Stage: 1
   _waveCount: 2

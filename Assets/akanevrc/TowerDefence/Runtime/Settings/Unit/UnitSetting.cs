@@ -3,7 +3,7 @@ using UnityEngine;
 namespace akanevrc.TowerDefence
 {
     [CreateAssetMenu(menuName = "ScriptableObjects/UnitSetting")]
-    public class UnitSetting : ScriptableObject
+    public class UnitSetting : ScriptableObject, ISetting<UnitSetting.UnitKind>
     {
         public enum UnitKind
         {

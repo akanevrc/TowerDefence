@@ -3,12 +3,12 @@ using UnityEngine;
 namespace akanevrc.TowerDefence
 {
     [CreateAssetMenu(menuName = "ScriptableObjects/StageSetting")]
-    public class StageSetting : ScriptableObject
+    public class StageSetting : ScriptableObject, ISetting<StageNumber>
     {
-        [SerializeField] private StageNumber _stageNumber;
+        [SerializeField] private StageNumber _kind;
         [SerializeField] private int _waveCount;
 
-        public StageNumber StageNumber => _stageNumber;
+        public StageNumber Kind => _kind;
         public int WaveCount => _waveCount;
     }
 }

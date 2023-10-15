@@ -3,12 +3,12 @@ using UnityEngine;
 namespace akanevrc.TowerDefence
 {
     [CreateAssetMenu(menuName = "ScriptableObjects/GoalSetting")]
-    public class GoalSetting : ScriptableObject
+    public class GoalSetting : ScriptableObject, ISetting<StageNumber>
     {
-        [SerializeField] private StageNumber _stageNumber;
+        [SerializeField] private StageNumber _kind;
         [SerializeField] private int _health;
 
-        public StageNumber StageNumber => _stageNumber;
+        public StageNumber Kind => _kind;
         public float Health => _health;
     }
 }
