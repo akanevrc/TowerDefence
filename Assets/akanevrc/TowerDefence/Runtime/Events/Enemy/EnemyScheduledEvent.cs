@@ -1,7 +1,7 @@
 
 namespace akanevrc.TowerDefence
 {
-    [Message(typeof(EnemyScheduledEvent))]
+    [Message]
     public readonly struct EnemyScheduledEvent
     {
         public ReservedEnemy ReservedEnemy { get; }

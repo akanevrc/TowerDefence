@@ -4,7 +4,7 @@ using VContainer;
 
 namespace akanevrc.TowerDefence
 {
-    [Handler(typeof(UpdateHandler))]
+    [Handler]
     public class UpdateHandler : IDisposable
     {
         [Inject] private MainConfig _mainConfig;

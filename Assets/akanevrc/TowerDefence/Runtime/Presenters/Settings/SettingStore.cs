@@ -3,13 +3,13 @@ using System.Linq;
 
 namespace akanevrc.TowerDefence
 {
-    [SettingStore(typeof(SettingStore<UnitSetting.UnitKind, UnitSetting>))]
-    [SettingStore(typeof(SettingStore<BulletSetting.BulletKind, BulletSetting>))]
-    [SettingStore(typeof(SettingStore<EnemySetting.EnemyKind, EnemySetting>))]
-    [SettingStore(typeof(SettingStore<PedestalSetting.PedestalKind, PedestalSetting>))]
-    [SettingStore(typeof(SettingStore<StageNumber, GoalSetting>))]
-    [SettingStore(typeof(SettingStore<StageNumber, StageSetting>))]
-    [SettingStore(typeof(SettingStore<WaveNumber, EnemyWaveSetting>))]
+    [SettingStore(typeof(UnitSetting.UnitKind), typeof(UnitSetting))]
+    [SettingStore(typeof(BulletSetting.BulletKind), typeof(BulletSetting))]
+    [SettingStore(typeof(EnemySetting.EnemyKind), typeof(EnemySetting))]
+    [SettingStore(typeof(PedestalSetting.PedestalKind), typeof(PedestalSetting))]
+    [SettingStore(typeof(StageNumber), typeof(GoalSetting))]
+    [SettingStore(typeof(StageNumber), typeof(StageSetting))]
+    [SettingStore(typeof(WaveNumber), typeof(EnemyWaveSetting))]
     public class SettingStore<TKind, TSetting>
         where TKind : struct
         where TSetting : ISetting<TKind>

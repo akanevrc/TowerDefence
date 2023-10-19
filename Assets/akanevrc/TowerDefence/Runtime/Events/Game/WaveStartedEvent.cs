@@ -1,7 +1,7 @@
 
 namespace akanevrc.TowerDefence
 {
-    [Message(typeof(WaveStartedEvent))]
+    [Message]
     public readonly struct WaveStartedEvent
     {
         public WaveNumber Wave { get; }

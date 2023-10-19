@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace akanevrc.TowerDefence
 {
-    [Message(typeof(BulletPlacingEvent))]
+    [Message]
     public readonly struct BulletPlacingEvent
     {
         public int Kind { get; }

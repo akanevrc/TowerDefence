@@ -4,7 +4,7 @@ using VContainer;
 
 namespace akanevrc.TowerDefence
 {
-    [Handler(typeof(GameHandler))]
+    [Handler]
     public class GameHandler : IDisposable
     {
         [Inject] private ISubscriber<ModelLoopEvent> _modelLoopSub;

@@ -13,7 +13,16 @@ namespace akanevrc.TowerDefence
             {
                 foreach (var attribute in type.GetCustomAttributes(typeof(T), false))
                 {
-                    yield return ((T)attribute).Type;
+                    var genericParams = ((T)attribute).GenericParams;
+
+                    if (genericParams.Length == 0)
+                    {
+                        yield return type;
+                    }
+                    else
+                    {
+                        yield return type.MakeGenericType(genericParams);
+                    }
                 }
             }
         }

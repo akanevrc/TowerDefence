@@ -1,7 +1,7 @@
 
 namespace akanevrc.TowerDefence
 {
-    [Message(typeof(WaveStartingEvent))]
+    [Message]
     public readonly struct WaveStartingEvent
     {
     }

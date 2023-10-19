@@ -1,11 +1,11 @@
 
 namespace akanevrc.TowerDefence
 {
-    [Message(typeof(EntityDestroyingEvent<Unit>))]
-    [Message(typeof(EntityDestroyingEvent<Bullet>))]
-    [Message(typeof(EntityDestroyingEvent<Enemy>))]
-    [Message(typeof(EntityDestroyingEvent<Pedestal>))]
-    [Message(typeof(EntityDestroyingEvent<Goal>))]
+    [Message(typeof(Unit))]
+    [Message(typeof(Bullet))]
+    [Message(typeof(Enemy))]
+    [Message(typeof(Pedestal))]
+    [Message(typeof(Goal))]
     public readonly struct EntityDestroyingEvent<T>
         where T : struct
     {

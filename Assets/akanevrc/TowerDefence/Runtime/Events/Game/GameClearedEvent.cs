@@ -1,7 +1,7 @@
 
 namespace akanevrc.TowerDefence
 {
-    [Message(typeof(GameClearedEvent))]
+    [Message]
     public readonly struct GameClearedEvent
     {
     }

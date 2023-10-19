@@ -1,7 +1,7 @@
 
 namespace akanevrc.TowerDefence
 {
-    [Message(typeof(EnemyDirectionChangedEvent))]
+    [Message]
     public readonly struct EnemyDirectionChangedEvent
     {
         public Entity<Enemy> Enemy { get; }

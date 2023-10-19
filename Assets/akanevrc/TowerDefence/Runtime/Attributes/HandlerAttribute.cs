@@ -4,8 +4,8 @@ namespace akanevrc.TowerDefence
 {
     public class HandlerAttribute : TypeAttribute
     {
-        public HandlerAttribute(Type type)
-            : base(type)
+        public HandlerAttribute(params Type[] genericParams)
+            : base(genericParams)
         {
         }
     }

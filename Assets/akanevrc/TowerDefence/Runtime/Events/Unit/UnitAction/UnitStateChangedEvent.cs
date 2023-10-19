@@ -1,7 +1,7 @@
 
 namespace akanevrc.TowerDefence
 {
-    [Message(typeof(UnitStateChangedEvent))]
+    [Message]
     public readonly struct UnitStateChangedEvent
     {
         public Entity<Unit> Unit { get; }

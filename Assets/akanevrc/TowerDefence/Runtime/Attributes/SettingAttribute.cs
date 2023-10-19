@@ -4,8 +4,8 @@ namespace akanevrc.TowerDefence
 {
     public class SettingAttribute : TypeAttribute
     {
-        public SettingAttribute(Type type)
-            : base(type)
+        public SettingAttribute(params Type[] genericParams)
+            : base(genericParams)
         {
         }
     }

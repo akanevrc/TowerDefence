@@ -1,7 +1,7 @@
 
 namespace akanevrc.TowerDefence
 {
-    [Message(typeof(StageLoopEvent))]
+    [Message]
     public readonly struct StageLoopEvent
     {
         public float DeltaTime { get; }

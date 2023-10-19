@@ -1,7 +1,7 @@
 
 namespace akanevrc.TowerDefence
 {
-    [Message(typeof(GameStartingEvent))]
+    [Message]
     public readonly struct GameStartingEvent
     {
     }

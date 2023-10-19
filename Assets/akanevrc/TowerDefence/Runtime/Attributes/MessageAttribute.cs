@@ -4,8 +4,8 @@ namespace akanevrc.TowerDefence
 {
     public class MessageAttribute : TypeAttribute
     {
-        public MessageAttribute(Type type)
-            : base(type)
+        public MessageAttribute(params Type[] genericParams)
+            : base(genericParams)
         {
         }
     }

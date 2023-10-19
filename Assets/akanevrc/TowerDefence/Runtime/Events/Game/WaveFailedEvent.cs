@@ -1,7 +1,7 @@
 
 namespace akanevrc.TowerDefence
 {
-    [Message(typeof(WaveFailedEvent))]
+    [Message]
     public readonly struct WaveFailedEvent
     {
     }
