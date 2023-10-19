@@ -10,7 +10,7 @@ namespace akanevrc.TowerDefence
         public int Id;
         public int Kind;
         public bool IsAlive;
-        public Vector3 Position;
+        public Vector2 Position;
 
         public T Data;
     }
