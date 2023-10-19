@@ -4,19 +4,19 @@ namespace akanevrc.TowerDefence
 {
     [CreateAssetMenu(menuName = "ScriptableObjects/UnitSetting")]
     [Settings]
-    public class UnitSetting : ScriptableObject, ISetting<UnitSetting.UnitKind>
+    public class UnitSetting : ScriptableObject, ISetting<UnitSetting.KindType>
     {
-        public enum UnitKind
+        public enum KindType
         {
             Normal
         }
 
-        [SerializeField] private UnitKind _kind;
+        [SerializeField] private KindType _kind;
         [SerializeField] private int _maxLevel;
         [SerializeField] private float[] _attacks;
         [SerializeField] private float[] _ranges;
 
-        public UnitKind Kind => _kind;
+        public KindType Kind => _kind;
         public int MaxLevel => _maxLevel;
         public float[] Attacks => _attacks;
         public float[] Ranges => _ranges;

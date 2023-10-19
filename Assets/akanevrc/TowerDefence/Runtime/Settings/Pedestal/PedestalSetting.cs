@@ -4,16 +4,16 @@ namespace akanevrc.TowerDefence
 {
     [CreateAssetMenu(menuName = "ScriptableObjects/PedestalSetting")]
     [Settings]
-    public class PedestalSetting : ScriptableObject, ISetting<PedestalSetting.PedestalKind>
+    public class PedestalSetting : ScriptableObject, ISetting<PedestalSetting.KindType>
     {
-        public enum PedestalKind
+        public enum KindType
         {
             None,
             Normal
         }
 
-        [SerializeField] private PedestalKind _kind;
+        [SerializeField] private KindType _kind;
 
-        public PedestalKind Kind => _kind;
+        public KindType Kind => _kind;
     }
 }

@@ -3,10 +3,10 @@ using System.Linq;
 
 namespace akanevrc.TowerDefence
 {
-    [SettingStore(typeof(UnitSetting.UnitKind), typeof(UnitSetting))]
-    [SettingStore(typeof(BulletSetting.BulletKind), typeof(BulletSetting))]
-    [SettingStore(typeof(EnemySetting.EnemyKind), typeof(EnemySetting))]
-    [SettingStore(typeof(PedestalSetting.PedestalKind), typeof(PedestalSetting))]
+    [SettingStore(typeof(UnitSetting.KindType), typeof(UnitSetting))]
+    [SettingStore(typeof(BulletSetting.KindType), typeof(BulletSetting))]
+    [SettingStore(typeof(EnemySetting.KindType), typeof(EnemySetting))]
+    [SettingStore(typeof(PedestalSetting.KindType), typeof(PedestalSetting))]
     [SettingStore(typeof(StageNumber), typeof(GoalSetting))]
     [SettingStore(typeof(StageNumber), typeof(StageSetting))]
     [SettingStore(typeof(WaveNumber), typeof(EnemyWaveSetting))]

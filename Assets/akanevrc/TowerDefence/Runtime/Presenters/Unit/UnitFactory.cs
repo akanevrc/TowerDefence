@@ -10,10 +10,10 @@ namespace akanevrc.TowerDefence
         public readonly struct FactoryParams
         {
             public int Id { get; }
-            public UnitSetting.UnitKind Kind { get; }
+            public UnitSetting.KindType Kind { get; }
             public Vector2 Position { get; }
 
-            public FactoryParams(int id, UnitSetting.UnitKind kind, Vector2 position)
+            public FactoryParams(int id, UnitSetting.KindType kind, Vector2 position)
             {
                 Id = id;
                 Kind = kind;
@@ -21,7 +21,7 @@ namespace akanevrc.TowerDefence
             }
         }
 
-        [Inject] private SettingStore<UnitSetting.UnitKind, UnitSetting> _unitSettingStore;
+        [Inject] private SettingStore<UnitSetting.KindType, UnitSetting> _unitSettingStore;
         //[Inject] private UnitStateUpdater _unitStateUpdater;
         [Inject] private IPublisher<EntityCreatedEvent<Unit>> _unitCreatedPub;
 

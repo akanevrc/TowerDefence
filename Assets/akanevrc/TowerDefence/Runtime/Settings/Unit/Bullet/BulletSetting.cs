@@ -4,17 +4,17 @@ namespace akanevrc.TowerDefence
 {
     [CreateAssetMenu(menuName = "ScriptableObjects/BulletSetting")]
     [Settings]
-    public class BulletSetting : ScriptableObject, ISetting<BulletSetting.BulletKind>
+    public class BulletSetting : ScriptableObject, ISetting<BulletSetting.KindType>
     {
-        public enum BulletKind
+        public enum KindType
         {
             Normal
         }
 
-        [SerializeField] private BulletKind _kind;
+        [SerializeField] private KindType _kind;
         [SerializeField] private float _velocity;
 
-        public BulletKind Kind => _kind;
+        public KindType Kind => _kind;
         public float Velocity => _velocity;
     }
 }
