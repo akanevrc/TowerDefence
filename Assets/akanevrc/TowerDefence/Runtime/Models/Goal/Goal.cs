@@ -5,6 +5,6 @@ namespace akanevrc.TowerDefence
     [Serializable]
     public struct Goal
     {
-        public int Health;
+        public float Health;
     }
 }
