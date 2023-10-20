@@ -10,6 +10,7 @@ namespace akanevrc.TowerDefence
             var settingStores = TypeAttributeUtil.GetAllTypesWithAttribute<SettingStoreAttribute>();
             var settingss = TypeAttributeUtil.GetAllTypesWithAttribute<SettingsAttribute>();
             var handlers = TypeAttributeUtil.GetAllTypesWithAttribute<HandlerAttribute>();
+            var stageStores = TypeAttributeUtil.GetAllTypesWithAttribute<StageStoreAttribute>();
             var source =
 $@"using VContainer;
 
@@ -30,6 +31,10 @@ namespace akanevrc.TowerDefence
         handlers
         .Select(handler => $@"[Inject] private {handler.GetTypeName()} {handler.GetVarName()};")
         .ToLines(8)
+    }{
+        stageStores
+        .Select(stageStore => $@"[Inject] private {stageStore.GetTypeName()} {stageStore.GetVarName()};")
+        .ToLines(8)
     }
 
         partial void Init()
@@ -46,6 +51,10 @@ namespace akanevrc.TowerDefence
         }{
             handlers
             .Select(handler => $@"{handler.GetVarName()}?.Init();")
+            .ToLines(12)
+        }{
+            stageStores
+            .Select(stageStore => $@"{stageStore.GetVarName()}?.Init(new StageNumber() {{ World = 1, Stage = 1 }});")
             .ToLines(12)
         }
         }}

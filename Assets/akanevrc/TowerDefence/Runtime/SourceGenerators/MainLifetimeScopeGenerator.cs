@@ -10,6 +10,7 @@ namespace akanevrc.TowerDefence
             var settings = TypeAttributeUtil.GetAllTypesWithAttribute<SettingAttribute>();
             var settingss = TypeAttributeUtil.GetAllTypesWithAttribute<SettingsAttribute>();
             var settingStores = TypeAttributeUtil.GetAllTypesWithAttribute<SettingStoreAttribute>();
+            var stageStores = TypeAttributeUtil.GetAllTypesWithAttribute<StageStoreAttribute>();
             var presenters = TypeAttributeUtil.GetAllTypesWithAttribute<PresenterAttribute>();
             var handlers = TypeAttributeUtil.GetAllTypesWithAttribute<HandlerAttribute>();
             var messages = TypeAttributeUtil.GetAllTypesWithAttribute<MessageAttribute>();
@@ -44,6 +45,10 @@ namespace akanevrc.TowerDefence
         }{
             settingStores
             .Select(settingStore => $@"builder.Register<{settingStore.GetTypeName()}>(Lifetime.Scoped);")
+            .ToLines(12)
+        }{
+            stageStores
+            .Select(stageStore => $@"builder.Register<{stageStore.GetTypeName()}>(Lifetime.Scoped);")
             .ToLines(12)
         }{
             presenters
