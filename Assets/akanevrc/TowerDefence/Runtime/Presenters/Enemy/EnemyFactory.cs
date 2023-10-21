@@ -35,7 +35,7 @@ namespace akanevrc.TowerDefence
             var enemy = new Entity<Enemy>()
             {
                 Id = factoryParams.Id,
-                Kind = (int)factoryParams.Kind,
+                Kind = factoryParams.Kind.KindToInt(),
                 IsAlive = true,
                 Position = default,
                 Data = new Enemy()

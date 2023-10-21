@@ -25,7 +25,7 @@ namespace akanevrc.TowerDefence
                 var time = enemySeries.SpawnTime;
                 for (var i = 0; i < enemySeries.Count; i++)
                 {
-                    yield return new ReservedEnemy() { Id = id, SpawnTime = time, OffsetFactor = 0.0F, Kind = (int)enemySeries.Kind };
+                    yield return new ReservedEnemy() { Id = id, SpawnTime = time, OffsetFactor = 0.0F, Kind = enemySeries.Kind.KindToInt() };
                     id++;
                     time += enemySeries.Interval;
                 }

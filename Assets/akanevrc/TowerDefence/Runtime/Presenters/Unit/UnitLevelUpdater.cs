@@ -9,7 +9,7 @@ namespace akanevrc.TowerDefence
 
         public void IncrementLevel(Entity<Unit> unit)
         {
-            if (_unitSettingStore.Settings.TryGetValue((UnitSetting.KindType)unit.Kind, out var setting) && unit.Data.Level < setting.MaxLevel)
+            if (_unitSettingStore.Settings.TryGetValue(unit.Kind.IntToKind<UnitSetting.KindType>(), out var setting) && unit.Data.Level < setting.MaxLevel)
             {
                 var level = unit.Data.Level + 1;
                 SetStatus(unit, level, setting.Attacks[level], setting.Ranges[level]);

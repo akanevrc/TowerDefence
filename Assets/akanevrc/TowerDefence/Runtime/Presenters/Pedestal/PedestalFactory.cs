@@ -29,7 +29,7 @@ namespace akanevrc.TowerDefence
             var pedestal = new Entity<Pedestal>()
             {
                 Id = factoryParams.Id,
-                Kind = (int)factoryParams.Kind,
+                Kind = factoryParams.Kind.KindToInt(),
                 IsAlive = true,
                 Position = factoryParams.Position,
                 Data = new Pedestal()

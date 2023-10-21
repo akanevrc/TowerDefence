@@ -38,7 +38,7 @@ namespace akanevrc.TowerDefence
             var bullet = new Entity<Bullet>()
             {
                 Id = factoryParams.Id,
-                Kind = (int)factoryParams.Kind,
+                Kind = factoryParams.Kind.KindToInt(),
                 IsAlive = true,
                 Position = factoryParams.Position,
                 Data = new Bullet()

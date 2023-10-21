@@ -35,7 +35,7 @@ namespace akanevrc.TowerDefence
             var unit = new Entity<Unit>()
             {
                 Id = factoryParams.Id,
-                Kind = (int)factoryParams.Kind,
+                Kind = factoryParams.Kind.KindToInt(),
                 IsAlive = true,
                 Position = factoryParams.Position,
                 Data = new Unit()
