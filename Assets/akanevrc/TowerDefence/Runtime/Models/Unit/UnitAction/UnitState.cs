@@ -29,9 +29,9 @@ namespace akanevrc.TowerDefence
             new UnitState[]
             {
                 Starting(0.2F),
-                Attack  (0.0F),
-                Ending  (0.4F),
-                Ready   (float.PositiveInfinity)
+                Attack(0.0F),
+                Ending(0.4F),
+                Ready(float.PositiveInfinity)
             };
 
         public KindType Kind;
