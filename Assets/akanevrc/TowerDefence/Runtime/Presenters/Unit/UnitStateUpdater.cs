@@ -7,7 +7,6 @@ namespace akanevrc.TowerDefence
     public class UnitStateUpdater
     {
         [Inject] private EntityStore<Enemy, EnemyFactory.FactoryParams> _enemyStore;
-        [Inject] private EntityStore<Pedestal, PedestalFactory.FactoryParams> _pedestalStore;
         [Inject] private Targeter _targeter;
         [Inject] private IPublisher<UnitStateChangedEvent> _unitStateChangedPub;
         [Inject] private IPublisher<BulletPlacingEvent> _bulletPlacingPub;
