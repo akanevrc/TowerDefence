@@ -5,11 +5,20 @@ namespace akanevrc.TowerDefence
     [Serializable]
     public struct UnitState
     {
-        public static UnitState None(float time) => new() { Kind = 0, Time = time };
-        public static UnitState Ready(float time) => new() { Kind = 1, Time = time };
-        public static UnitState Starting(float time) => new() { Kind = 2, Time = time };
-        public static UnitState Attack(float time) => new() { Kind = 3, Time = time };
-        public static UnitState Ending(float time) => new() { Kind = 4, Time = time };
+        public enum KindType
+        {
+            None,
+            Ready,
+            Starting,
+            Attack,
+            Ending
+        }
+
+        public static UnitState None(float time) => new() { Kind = KindType.None, Time = time };
+        public static UnitState Ready(float time) => new() { Kind = KindType.Ready, Time = time };
+        public static UnitState Starting(float time) => new() { Kind = KindType.Starting, Time = time };
+        public static UnitState Attack(float time) => new() { Kind = KindType.Attack, Time = time };
+        public static UnitState Ending(float time) => new() { Kind = KindType.Ending, Time = time };
 
         public static UnitState[] ReadySequence =
             new UnitState[]
@@ -25,7 +34,7 @@ namespace akanevrc.TowerDefence
                 Ready   (float.PositiveInfinity)
             };
 
-        public int Kind;
+        public KindType Kind;
         public float Time;
     }
 }
