@@ -51,7 +51,7 @@ namespace akanevrc.TowerDefence
             };
             //_unitStateUpdater.UpdateOnFirst(unit);
 
-            _unitCreatedPub?.Publish(new EntityCreatedEvent<Unit>(unit));
+            _unitCreatedPub.Publish(new EntityCreatedEvent<Unit>(unit));
 
             return unit;
         }

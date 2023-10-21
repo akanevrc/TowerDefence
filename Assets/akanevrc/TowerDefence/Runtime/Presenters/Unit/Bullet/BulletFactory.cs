@@ -50,7 +50,7 @@ namespace akanevrc.TowerDefence
                 }
             };
 
-            _bulletCreatedPub?.Publish(new EntityCreatedEvent<Bullet>(bullet));
+            _bulletCreatedPub.Publish(new EntityCreatedEvent<Bullet>(bullet));
 
             return bullet;
         }

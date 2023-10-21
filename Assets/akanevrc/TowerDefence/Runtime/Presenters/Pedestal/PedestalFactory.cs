@@ -38,7 +38,7 @@ namespace akanevrc.TowerDefence
                 }
             };
 
-            _pedestalCreatedPub?.Publish(new EntityCreatedEvent<Pedestal>(pedestal));
+            _pedestalCreatedPub.Publish(new EntityCreatedEvent<Pedestal>(pedestal));
 
             return pedestal;
         }

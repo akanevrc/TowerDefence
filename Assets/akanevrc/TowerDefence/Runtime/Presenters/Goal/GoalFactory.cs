@@ -43,7 +43,7 @@ namespace akanevrc.TowerDefence
                 }
             };
 
-            _goalCreatedPub?.Publish(new EntityCreatedEvent<Goal>(goal));
+            _goalCreatedPub.Publish(new EntityCreatedEvent<Goal>(goal));
 
             return goal;
         }

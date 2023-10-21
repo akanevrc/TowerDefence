@@ -22,7 +22,7 @@ namespace akanevrc.TowerDefence
 
         public void Tick()
         {
-            _updatePub?.Publish(new UpdateEvent(Time.deltaTime));
+            _updatePub.Publish(new UpdateEvent(Time.deltaTime));
         }
     }
 }

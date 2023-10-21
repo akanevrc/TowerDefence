@@ -51,7 +51,7 @@ namespace akanevrc.TowerDefence
             };
             //_enemyStateUpdater.UpdateOnFirst(enemy, _stageStore.Stage.Marks, factoryParams.OffsetFactor);
 
-            _enemyCreatedPub?.Publish(new EntityCreatedEvent<Enemy>(enemy));
+            _enemyCreatedPub.Publish(new EntityCreatedEvent<Enemy>(enemy));
 
             return enemy;
         }
