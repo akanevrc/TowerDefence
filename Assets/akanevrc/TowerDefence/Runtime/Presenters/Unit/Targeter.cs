@@ -4,6 +4,7 @@ using VContainer;
 
 namespace akanevrc.TowerDefence
 {
+    [Presenter]
     public class Targeter
     {
         [Inject] private EntityStore<Enemy, EnemyFactory.FactoryParams> _enemyStore;
