@@ -7,8 +7,8 @@ namespace akanevrc.TowerDefence
     [Presenter]
     public class BulletStateUpdater
     {
-        [Inject] private EntityStore<Enemy, EnemyFactory.FactoryParams> _enemyStore { get; }
-        [Inject] private IPublisher<BulletHitEvent> _bulletHitPub { get; }
+        [Inject] private EntityStore<Enemy, EnemyFactory.FactoryParams> _enemyStore;
+        [Inject] private IPublisher<BulletHitEvent> _bulletHitPub;
 
         public void UpdateToNext(Entity<Bullet> bullet, float deltaTime)
         {
