@@ -4,12 +4,12 @@ namespace akanevrc.TowerDefence
     [Message]
     public readonly struct EnemyDirectionChangedEvent
     {
-        public Entity<Enemy> Enemy { get; }
+        public int EnemyId { get; }
         public EnemyDirection Direction { get; }
         
-        public EnemyDirectionChangedEvent(Entity<Enemy> enemy, EnemyDirection direction)
+        public EnemyDirectionChangedEvent(int enemyId, EnemyDirection direction)
         {
-            Enemy = enemy;
+            EnemyId = enemyId;
             Direction = direction;
         }
     }

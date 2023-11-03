@@ -4,13 +4,13 @@ namespace akanevrc.TowerDefence
     [Message]
     public readonly struct BulletHitEvent
     {
-        public Entity<Bullet> Bullet { get; }
-        public Entity<Enemy> Target { get; }
+        public int BulletId { get; }
+        public int TargetId { get; }
 
-        public BulletHitEvent(Entity<Bullet> bullet, Entity<Enemy> target)
+        public BulletHitEvent(int bulletId, int targetId)
         {
-            Bullet = bullet;
-            Target = target;
+            BulletId = bulletId;
+            TargetId = targetId;
         }
     }
 }

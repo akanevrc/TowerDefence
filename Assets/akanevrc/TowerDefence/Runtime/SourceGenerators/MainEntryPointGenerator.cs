@@ -18,22 +18,22 @@ namespace akanevrc.TowerDefence
 {{
     public partial class MainEntryPoint
     {{
-        [Inject] private IObjectResolver _resolver;
+        [Inject] private readonly IObjectResolver _resolver;
     {
         settingStores
-        .Select(settingStore => $@"[Inject] private {settingStore.GetTypeName()} {settingStore.GetSettingStoreVarName()};")
+        .Select(settingStore => $@"[Inject] private readonly {settingStore.GetTypeName()} {settingStore.GetSettingStoreVarName()};")
         .ToLines(8)
     }{
         settingss
-        .Select(settings => $@"[Inject] private {settings.GetTypeName()}[] {settings.GetArrayVarName()};")
+        .Select(settings => $@"[Inject] private readonly {settings.GetTypeName()}[] {settings.GetArrayVarName()};")
         .ToLines(8)
     }{
         handlers
-        .Select(handler => $@"[Inject] private {handler.GetTypeName()} {handler.GetVarName()};")
+        .Select(handler => $@"[Inject] private readonly {handler.GetTypeName()} {handler.GetVarName()};")
         .ToLines(8)
     }{
         stageStores
-        .Select(stageStore => $@"[Inject] private {stageStore.GetTypeName()} {stageStore.GetVarName()};")
+        .Select(stageStore => $@"[Inject] private readonly {stageStore.GetTypeName()} {stageStore.GetVarName()};")
         .ToLines(8)
     }
 
@@ -57,6 +57,7 @@ namespace akanevrc.TowerDefence
             .Select(stageStore => $@"{stageStore.GetVarName()}?.Init(new StageNumber() {{ World = 1, Stage = 1 }});")
             .ToLines(12)
         }
+            _stageScheduler.SetStage(new StageNumber() {{ World = 1, Stage = 1 }});
         }}
     }}
 }}

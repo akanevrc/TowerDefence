@@ -9,11 +9,11 @@ namespace akanevrc.TowerDefence
     public readonly struct EntityCreatedEvent<T>
         where T : struct
     {
-        public Entity<T> Entity { get; }
+        public int Id { get; }
 
-        public EntityCreatedEvent(Entity<T> entity)
+        public EntityCreatedEvent(int id)
         {
-            Entity = entity;
+            Id = id;
         }
     }
 }

@@ -4,7 +4,7 @@ using VContainer;
 
 namespace akanevrc.TowerDefence
 {
-    [Presenter]
+    [Factory]
     public class PedestalFactory : IEntityFactory<Pedestal, PedestalFactory.FactoryParams>
     {
         public readonly struct FactoryParams
@@ -21,8 +21,8 @@ namespace akanevrc.TowerDefence
             }
         }
 
-        [Inject] private SettingStore<PedestalSetting.KindType, PedestalSetting> _pedestalSettingStore;
-        [Inject] private IPublisher<EntityCreatedEvent<Pedestal>> _pedestalCreatedPub;
+        [Inject] private readonly SettingStore<PedestalSetting.KindType, PedestalSetting> _pedestalSettingStore;
+        [Inject] private readonly IPublisher<EntityCreatedEvent<Pedestal>> _pedestalCreatedPub;
 
         public Entity<Pedestal> Create(FactoryParams factoryParams)
         {
@@ -38,7 +38,7 @@ namespace akanevrc.TowerDefence
                 }
             };
 
-            _pedestalCreatedPub.Publish(new EntityCreatedEvent<Pedestal>(pedestal));
+            _pedestalCreatedPub.Publish(new EntityCreatedEvent<Pedestal>(pedestal.Id));
 
             return pedestal;
         }

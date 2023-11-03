@@ -7,12 +7,12 @@ namespace akanevrc.TowerDefence
     [Presenter]
     public class BulletStateUpdater
     {
-        [Inject] private EntityStore<Enemy, EnemyFactory.FactoryParams> _enemyStore;
-        [Inject] private IPublisher<BulletHitEvent> _bulletHitPub;
+        [Inject] private readonly EntityStore<Enemy, EnemyFactory.FactoryParams> _enemyStore;
+        [Inject] private readonly IPublisher<BulletHitEvent> _bulletHitPub;
 
-        public void UpdateToNext(Entity<Bullet> bullet, float deltaTime)
+        public void UpdateToNext(ref Entity<Bullet> bullet, float deltaTime)
         {
-            if (!_enemyStore.Entities.TryGetValue(bullet.Data.TargetId, out var target))
+            if (!_enemyStore.TryGet(bullet.Data.TargetId, out var target))
             {
                 bullet.IsAlive = false;
                 return;
@@ -24,7 +24,7 @@ namespace akanevrc.TowerDefence
                 bullet.Data.Angle = GetAngle(bullet.Position, target.Position);
                 bullet.Data.TargetId = Entity<Enemy>.None.Id;
 
-                _bulletHitPub.Publish(new BulletHitEvent(bullet, target));
+                _bulletHitPub.Publish(new BulletHitEvent(bullet.Id, target.Id));
                 return;
             }
 
@@ -39,7 +39,7 @@ namespace akanevrc.TowerDefence
                 bullet.Data.Angle = GetAngle(position, target.Position);
                 bullet.Data.TargetId = Entity<Enemy>.None.Id;
 
-                _bulletHitPub.Publish(new BulletHitEvent(bullet, target));
+                _bulletHitPub.Publish(new BulletHitEvent(bullet.Id, target.Id));
                 return;
             }
             else

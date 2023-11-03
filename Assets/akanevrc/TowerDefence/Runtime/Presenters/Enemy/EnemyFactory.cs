@@ -3,7 +3,7 @@ using VContainer;
 
 namespace akanevrc.TowerDefence
 {
-    [Presenter]
+    [Factory]
     public class EnemyFactory : IEntityFactory<Enemy, EnemyFactory.FactoryParams>
     {
         public readonly struct FactoryParams
@@ -20,10 +20,10 @@ namespace akanevrc.TowerDefence
             }
         }
 
-        [Inject] private SettingStore<EnemySetting.KindType, EnemySetting> _enemySettingStore;
-        [Inject] private StageStore _stageStore;
-        [Inject] private EnemyStateUpdater _enemyStateUpdater;
-        [Inject] private IPublisher<EntityCreatedEvent<Enemy>> _enemyCreatedPub;
+        [Inject] private readonly SettingStore<EnemySetting.KindType, EnemySetting> _enemySettingStore;
+        [Inject] private readonly StageStore _stageStore;
+        [Inject] private readonly EnemyStateUpdater _enemyStateUpdater;
+        [Inject] private readonly IPublisher<EntityCreatedEvent<Enemy>> _enemyCreatedPub;
 
         public Entity<Enemy> Create(FactoryParams factoryParams)
         {
@@ -49,9 +49,9 @@ namespace akanevrc.TowerDefence
                     Direction = default,
                 }
             };
-            _enemyStateUpdater.UpdateOnFirst(enemy, _stageStore.Stage.Route, factoryParams.OffsetFactor);
+            _enemyStateUpdater.UpdateOnFirst(ref enemy, _stageStore.Stage.Route, factoryParams.OffsetFactor);
 
-            _enemyCreatedPub.Publish(new EntityCreatedEvent<Enemy>(enemy));
+            _enemyCreatedPub.Publish(new EntityCreatedEvent<Enemy>(enemy.Id));
 
             return enemy;
         }

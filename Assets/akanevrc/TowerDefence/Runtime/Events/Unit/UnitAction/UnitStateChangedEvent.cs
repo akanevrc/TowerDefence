@@ -4,12 +4,12 @@ namespace akanevrc.TowerDefence
     [Message]
     public readonly struct UnitStateChangedEvent
     {
-        public Entity<Unit> Unit { get; }
+        public int UnitId { get; }
         public UnitState State { get; }
 
-        public UnitStateChangedEvent(Entity<Unit> unit, UnitState state)
+        public UnitStateChangedEvent(int unitId, UnitState state)
         {
-            Unit = unit;
+            UnitId = unitId;
             State = state;
         }
     }

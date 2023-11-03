@@ -7,8 +7,8 @@ namespace akanevrc.TowerDefence
     [StageStore]
     public class StageStore
     {
-        [Inject] private SettingStore<StageNumber, StageSetting> _stageSettingStore;
-        [Inject] private StageFactory _stageFactory;
+        [Inject] private readonly SettingStore<StageNumber, StageSetting> _stageSettingStore;
+        [Inject] private readonly StageFactory _stageFactory;
 
         public Stage Stage { get; private set; }
 

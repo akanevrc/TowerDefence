@@ -4,7 +4,7 @@ using VContainer;
 
 namespace akanevrc.TowerDefence
 {
-    [Presenter]
+    [Factory]
     public class GoalFactory : IEntityFactory<Goal, GoalFactory.FactoryParams>
     {
         public readonly struct FactoryParams
@@ -21,8 +21,8 @@ namespace akanevrc.TowerDefence
             }
         }
 
-        [Inject] private SettingStore<StageNumber, GoalSetting> _goalSettingStore;
-        [Inject] private IPublisher<EntityCreatedEvent<Goal>> _goalCreatedPub;
+        [Inject] private readonly SettingStore<StageNumber, GoalSetting> _goalSettingStore;
+        [Inject] private readonly IPublisher<EntityCreatedEvent<Goal>> _goalCreatedPub;
 
         public Entity<Goal> Create(FactoryParams factoryParams)
         {
@@ -43,7 +43,7 @@ namespace akanevrc.TowerDefence
                 }
             };
 
-            _goalCreatedPub.Publish(new EntityCreatedEvent<Goal>(goal));
+            _goalCreatedPub.Publish(new EntityCreatedEvent<Goal>(goal.Id));
 
             return goal;
         }

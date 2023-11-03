@@ -7,10 +7,10 @@ namespace akanevrc.TowerDefence
     [Presenter]
     public class EnemyStateUpdater
     {
-        [Inject] private IPublisher<EnemyDirectionChangedEvent> _enemyDirectionChangedPub;
-        [Inject] private IPublisher<EnemyGoaledEvent> _enemyGoaledPub;
+        [Inject] private readonly IPublisher<EnemyDirectionChangedEvent> _enemyDirectionChangedPub;
+        [Inject] private readonly IPublisher<EnemyGoaledEvent> _enemyGoaledPub;
 
-        public void UpdateOnFirst(Entity<Enemy> enemy, RouteMarkPoints marks, float offsetFactor)
+        public void UpdateOnFirst(ref Entity<Enemy> enemy, RouteMarkPoints marks, float offsetFactor)
         {
             var current = marks.GetFirst();
             if (!current.IsValid)
@@ -41,7 +41,7 @@ namespace akanevrc.TowerDefence
             return;
         }
 
-        public void UpdateToNext(Entity<Enemy> enemy, RouteMarkPoints marks, float deltaTime)
+        public void UpdateToNext(ref Entity<Enemy> enemy, RouteMarkPoints marks, float deltaTime)
         {
             var current = enemy.Data.Mark;
             if (!current.IsValid)
@@ -49,7 +49,7 @@ namespace akanevrc.TowerDefence
                 enemy.Data.Mark = MarkPoint.None;
                 enemy.Data.Direction = EnemyDirection.L;
 
-                _enemyGoaledPub.Publish(new EnemyGoaledEvent(enemy));
+                _enemyGoaledPub.Publish(new EnemyGoaledEvent(enemy.Id));
                 return;
             }
 
@@ -65,7 +65,7 @@ namespace akanevrc.TowerDefence
                 enemy.Data.Offset = newOffset;
                 enemy.Data.Mark = next;
 
-                UpdateToNext(enemy, marks, (1.0F - diff.magnitude / dp.magnitude) * deltaTime);
+                UpdateToNext(ref enemy, marks, (1.0F - diff.magnitude / dp.magnitude) * deltaTime);
                 return;
             }
             else
@@ -78,13 +78,13 @@ namespace akanevrc.TowerDefence
                     enemy.Position = p;
                     enemy.Data.Offset = newOffset;
                     enemy.Data.Mark = next;
-                    enemy.Data.Direction = next.IsValid ? GetNextDirection(enemy, p, next.Point, enemy.Data.Direction) : EnemyDirection.L;
+                    enemy.Data.Direction = next.IsValid ? GetNextDirection(ref enemy, p, next.Point, enemy.Data.Direction) : EnemyDirection.L;
                     return;
                 }
                 else
                 {
                     enemy.Position = p;
-                    enemy.Data.Direction = GetNextDirection(enemy, p, current.Point, enemy.Data.Direction);
+                    enemy.Data.Direction = GetNextDirection(ref enemy, p, current.Point, enemy.Data.Direction);
                     return;
                 }
             }
@@ -111,18 +111,18 @@ namespace akanevrc.TowerDefence
             return (next - current).x <= 0.0F ? EnemyDirection.L : EnemyDirection.R;
         }
 
-        private EnemyDirection GetNextDirection(Entity<Enemy> enemy, Vector2 current, Vector2 next, EnemyDirection direction)
+        private EnemyDirection GetNextDirection(ref Entity<Enemy> enemy, Vector2 current, Vector2 next, EnemyDirection direction)
         {
             var angle = Vector2.Angle(Vector2.right, next - current);
 
             if (Mathf.Abs(angle) < 67.5F)
             {
-                if (direction != EnemyDirection.R) _enemyDirectionChangedPub.Publish(new EnemyDirectionChangedEvent(enemy, EnemyDirection.R));
+                if (direction != EnemyDirection.R) _enemyDirectionChangedPub.Publish(new EnemyDirectionChangedEvent(enemy.Id, EnemyDirection.R));
                 return EnemyDirection.R;
             }
             else if (Mathf.Abs(angle) > 112.5F)
             {
-                if (direction != EnemyDirection.L) _enemyDirectionChangedPub.Publish(new EnemyDirectionChangedEvent(enemy, EnemyDirection.L));
+                if (direction != EnemyDirection.L) _enemyDirectionChangedPub.Publish(new EnemyDirectionChangedEvent(enemy.Id, EnemyDirection.L));
                 return EnemyDirection.L;
             }
             else

@@ -7,9 +7,9 @@ namespace akanevrc.TowerDefence
     [Handler]
     public class UpdateHandler : IDisposable
     {
-        [Inject] private MainConfig _mainConfig;
-        [Inject] private ISubscriber<UpdateEvent> _updateSub;
-        [Inject] private IPublisher<ModelLoopEvent> _modelLoopPub;
+        [Inject] private readonly MainConfig _mainConfig;
+        [Inject] private readonly ISubscriber<UpdateEvent> _updateSub;
+        [Inject] private readonly IPublisher<ModelLoopEvent> _modelLoopPub;
 
         private float _remainingTime = 0.0F;
         private readonly DisposableBagBuilder _disposables = DisposableBag.CreateBuilder();

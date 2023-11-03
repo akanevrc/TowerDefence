@@ -7,7 +7,7 @@ namespace akanevrc.TowerDefence
     [Presenter]
     public class Targeter
     {
-        [Inject] private EntityStore<Enemy, EnemyFactory.FactoryParams> _enemyStore;
+        [Inject] private readonly EntityStore<Enemy, EnemyFactory.FactoryParams> _enemyStore;
 
         public Entity<Enemy> Target(Vector2 position, TargetingStrategy strategy, float range)
         {
@@ -15,7 +15,7 @@ namespace akanevrc.TowerDefence
             {
                 TargetingStrategy.None => Entity<Enemy>.None,
                 TargetingStrategy.ClosestRange =>
-                    _enemyStore.Entities.Values
+                    _enemyStore.Iterate()
                     .Aggregate
                     (
                         (enemy: Entity<Enemy>.None, distance: float.PositiveInfinity),

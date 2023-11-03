@@ -15,6 +15,12 @@ namespace akanevrc.TowerDefence
                 (type.IsGenericType ? $"<{string.Join(", ", type.GenericTypeArguments.Select(t => t.GetTypeName()))}>" : "");
         }
 
+        public static string GetFactoryInterfaceName(this Type type)
+        {
+            var name = Regex.Replace(GetName(type), @"(.+)Factory", "$1");
+            return $"IEntityFactory<{name}, {name}Factory.FactoryParams>";
+        }
+
         public static string GetVarName(this Type type)
         {
             var name = GetName(type);

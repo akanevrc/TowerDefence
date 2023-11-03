@@ -4,11 +4,11 @@ namespace akanevrc.TowerDefence
     [Message]
     public readonly struct EnemyGoaledEvent
     {
-        public Entity<Enemy> Enemy { get; }
+        public int EnemyId { get; }
 
-        public EnemyGoaledEvent(Entity<Enemy> enemy)
+        public EnemyGoaledEvent(int enemyId)
         {
-            Enemy = enemy;
+            EnemyId = enemyId;
         }
     }
 }

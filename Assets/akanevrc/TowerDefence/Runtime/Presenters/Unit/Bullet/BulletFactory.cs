@@ -4,7 +4,7 @@ using VContainer;
 
 namespace akanevrc.TowerDefence
 {
-    [Presenter]
+    [Factory]
     public class BulletFactory : IEntityFactory<Bullet, BulletFactory.FactoryParams>
     {
         public readonly struct FactoryParams
@@ -25,8 +25,8 @@ namespace akanevrc.TowerDefence
             }
         }
 
-        [Inject] private SettingStore<BulletSetting.KindType, BulletSetting> _bulletSettingStore;
-        [Inject] private IPublisher<EntityCreatedEvent<Bullet>> _bulletCreatedPub;
+        [Inject] private readonly SettingStore<BulletSetting.KindType, BulletSetting> _bulletSettingStore;
+        [Inject] private readonly IPublisher<EntityCreatedEvent<Bullet>> _bulletCreatedPub;
 
         public Entity<Bullet> Create(FactoryParams factoryParams)
         {
@@ -50,7 +50,7 @@ namespace akanevrc.TowerDefence
                 }
             };
 
-            _bulletCreatedPub.Publish(new EntityCreatedEvent<Bullet>(bullet));
+            _bulletCreatedPub.Publish(new EntityCreatedEvent<Bullet>(bullet.Id));
 
             return bullet;
         }
