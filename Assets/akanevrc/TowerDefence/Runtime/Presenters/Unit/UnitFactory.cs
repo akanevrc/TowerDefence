@@ -22,7 +22,7 @@ namespace akanevrc.TowerDefence
         }
 
         [Inject] private SettingStore<UnitSetting.KindType, UnitSetting> _unitSettingStore;
-        //[Inject] private UnitStateUpdater _unitStateUpdater;
+        [Inject] private UnitStateUpdater _unitStateUpdater;
         [Inject] private IPublisher<EntityCreatedEvent<Unit>> _unitCreatedPub;
 
         public Entity<Unit> Create(FactoryParams factoryParams)
@@ -49,7 +49,7 @@ namespace akanevrc.TowerDefence
                     PedestalId = Entity<Pedestal>.None.Id,
                 }
             };
-            //_unitStateUpdater.UpdateOnFirst(unit);
+            _unitStateUpdater.UpdateOnFirst(unit);
 
             _unitCreatedPub.Publish(new EntityCreatedEvent<Unit>(unit));
 
