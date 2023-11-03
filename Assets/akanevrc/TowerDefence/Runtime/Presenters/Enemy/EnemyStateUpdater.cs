@@ -7,8 +7,8 @@ namespace akanevrc.TowerDefence
     [Presenter]
     public class EnemyStateUpdater
     {
-        [Inject] private IPublisher<EnemyDirectionChangedEvent> _enemyDirectionChangedPub { get; }
-        [Inject] private IPublisher<EnemyGoaledEvent> _enemyGoaledPub { get; }
+        [Inject] private IPublisher<EnemyDirectionChangedEvent> _enemyDirectionChangedPub;
+        [Inject] private IPublisher<EnemyGoaledEvent> _enemyGoaledPub;
 
         public void UpdateOnFirst(Entity<Enemy> enemy, RouteMarkPoints marks, float offsetFactor)
         {
