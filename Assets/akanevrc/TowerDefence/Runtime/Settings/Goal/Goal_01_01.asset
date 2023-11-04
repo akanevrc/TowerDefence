@@ -16,3 +16,4 @@ MonoBehaviour:
     World: 1
     Stage: 1
   _health: 10
+  _spriteLib: {fileID: 7108339969198208228, guid: 954829729c772034794b036543625611, type: 3}

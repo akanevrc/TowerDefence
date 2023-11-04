@@ -16,3 +16,4 @@ MonoBehaviour:
   _health: 4
   _attack: 1
   _velocity: 1
+  _spriteLib: {fileID: 7108339969198208228, guid: 98ea7a0ead876d34b8001f981dec8646, type: 3}

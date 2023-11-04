@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _kind: 0
   _velocity: 5
+  _spriteLib: {fileID: 7108339969198208228, guid: fe0bf1778c7df0944adf3bf6441e42d4, type: 3}

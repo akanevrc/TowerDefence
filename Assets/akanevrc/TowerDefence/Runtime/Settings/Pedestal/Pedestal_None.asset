@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Pedestal_None
   m_EditorClassIdentifier: 
   _kind: 0
+  _spriteLib: {fileID: 7108339969198208228, guid: e4abf6009c2e61744b2277e798e590c2, type: 3}
