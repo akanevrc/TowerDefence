@@ -15,6 +15,7 @@ namespace akanevrc.TowerDefence
             var presenters = TypeAttributeUtil.GetAllTypesWithAttribute<PresenterAttribute>();
             var handlers = TypeAttributeUtil.GetAllTypesWithAttribute<HandlerAttribute>();
             var messages = TypeAttributeUtil.GetAllTypesWithAttribute<MessageAttribute>();
+            var gameObjects = TypeAttributeUtil.GetAllTypesWithAttribute<GameObjectAttribute>();
             var source =
 $@"using UnityEngine;
 using MessagePipe;
@@ -31,6 +32,10 @@ namespace akanevrc.TowerDefence
     }{
         settingss
         .Select(settings => $@"[SerializeField] private {settings.GetTypeName()}[] {settings.GetArrayVarName()};")
+        .ToLines(8)
+    }{
+        gameObjects
+        .Select(gameObject => $@"[SerializeField] private {gameObject.GetTypeName()} {gameObject.GetVarName()};")
         .ToLines(8)
     }
 
@@ -73,6 +78,10 @@ namespace akanevrc.TowerDefence
                 messages
                 .Select(message => $@"builder.RegisterMessageBroker<{message.GetTypeName()}>(options);")
             )
+            .ToLines(12)
+        }{
+            gameObjects
+            .Select(gameObject => $@"if ({gameObject.GetVarName()} != null) builder.RegisterComponent({gameObject.GetVarName()});")
             .ToLines(12)
         }
             builder.RegisterEntryPoint<MainEntryPoint>();

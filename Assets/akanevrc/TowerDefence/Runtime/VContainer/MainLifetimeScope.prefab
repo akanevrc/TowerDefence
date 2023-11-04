@@ -65,3 +65,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d99bf56a2796531469611cd4452f19b8, type: 2}
   _unitSettings:
   - {fileID: 11400000, guid: 5ba824ff58f5c2c49aa37f311ca16796, type: 2}
+  _mainCameraBehaviour: {fileID: 533647871589823155, guid: db9712704ec456f44941a6819b2a8a17, type: 3}
