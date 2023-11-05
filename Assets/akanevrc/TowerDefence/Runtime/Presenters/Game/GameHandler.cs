@@ -115,7 +115,7 @@ namespace akanevrc.TowerDefence
 
         private void OnUnitPlacing(UnitPlacingEvent ev)
         {
-            var unit = _unitStore.Add(new(_currentUnitId, (UnitSetting.KindType)ev.Kind, ev.Position));
+            var unit = _unitStore.Add(new(_currentUnitId, ev.Kind.IntToKind<UnitSetting.KindType>(), ev.Position));
             _currentUnitId++;
 
             if (_pedestalStore.TryGet(ev.PedestalId, out var pedestal))
@@ -127,7 +127,7 @@ namespace akanevrc.TowerDefence
 
         private void OnBulletPlacing(BulletPlacingEvent ev)
         {
-            var bullet = _bulletStore.Add(new(_currentBulletId, (BulletSetting.KindType)ev.Kind, ev.Position, ev.TargetId, ev.Attack));
+            var bullet = _bulletStore.Add(new(_currentBulletId, ev.Kind.IntToKind<BulletSetting.KindType>(), ev.Position, ev.TargetId, ev.Attack));
             _currentBulletId++;
         }
 
@@ -159,7 +159,7 @@ namespace akanevrc.TowerDefence
                 new EnemyFactory.FactoryParams
                 (
                     ev.ReservedEnemy.Id,
-                    (EnemySetting.KindType)ev.ReservedEnemy.Kind,
+                    ev.ReservedEnemy.Kind.IntToKind<EnemySetting.KindType>(),
                     ev.ReservedEnemy.OffsetFactor
                 )
             );
