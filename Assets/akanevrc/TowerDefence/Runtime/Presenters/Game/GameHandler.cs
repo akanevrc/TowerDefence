@@ -225,7 +225,7 @@ namespace akanevrc.TowerDefence
         private void OnWaveCleared(WaveClearedEvent ev)
         {
             UnityEngine.Debug.Log($"Wave {_currentWave.Wave} Cleared");
-            _waveStartingPub?.Publish(new WaveStartingEvent());
+            _waveStartingPub.Publish(new WaveStartingEvent());
         }
 
         public void Dispose()
