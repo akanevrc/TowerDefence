@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace akanevrc.TowerDefence
 {
-    [GameObject]
+    [MonoBehaviour]
     public class MainCameraBehaviour : MonoBehaviour
     {
     }

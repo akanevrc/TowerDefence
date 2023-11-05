@@ -66,3 +66,14 @@ MonoBehaviour:
   _unitSettings:
   - {fileID: 11400000, guid: 5ba824ff58f5c2c49aa37f311ca16796, type: 2}
   _mainCameraBehaviour: {fileID: 533647871589823155, guid: db9712704ec456f44941a6819b2a8a17, type: 3}
+  _enemyBehaviour: {fileID: 5755998499630270890, guid: 14298084dfb012642895aa9058862618, type: 3}
+  _enemyFactoryBehaviour: {fileID: 8434503586078638223, guid: 410106e6432c7564eaaeb28aba901daa, type: 3}
+  _goalBehaviour: {fileID: 4992956761870910952, guid: 56ba1d3aeea6d6f4eb6922c943a3b7dd, type: 3}
+  _goalFactoryBehaviour: {fileID: 8465514552493214787, guid: 61f2f57d8c6dd6c488c5783081676f85, type: 3}
+  _pedestalBehaviour: {fileID: 7484765201486158516, guid: 68dc2542b26e64b42b81db29d9f47dc4, type: 3}
+  _pedestalFactoryBehaviour: {fileID: 7981667440566245900, guid: de164999acd2d1e47938c54e64d2721b, type: 3}
+  _bulletBehaviour: {fileID: 6845335897477829275, guid: 53ca00ee113ecab49a081115bb34a6c0, type: 3}
+  _bulletFactoryBehaviour: {fileID: 1198819982610920210, guid: 4517b2d9a9a89de499deba9a2298cdfb, type: 3}
+  _unitBehaviour: {fileID: 3457238101015350136, guid: ef1bc45f5b509bb4fa6c7fc7d93a2c1c, type: 3}
+  _unitFactoryBehaviour: {fileID: 7053708905311175022, guid: cfc3f95aa4b0e8f4e8aa3ab0bf2fe69c, type: 3}
+  _unitPlacerBehaviour: {fileID: 4381708893394982200, guid: 431a03ad9eba2ac44b116c1d3cf1cbbf, type: 3}

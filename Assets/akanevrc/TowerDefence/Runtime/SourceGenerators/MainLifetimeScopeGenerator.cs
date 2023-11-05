@@ -15,7 +15,8 @@ namespace akanevrc.TowerDefence
             var presenters = TypeAttributeUtil.GetAllTypesWithAttribute<PresenterAttribute>();
             var handlers = TypeAttributeUtil.GetAllTypesWithAttribute<HandlerAttribute>();
             var messages = TypeAttributeUtil.GetAllTypesWithAttribute<MessageAttribute>();
-            var gameObjects = TypeAttributeUtil.GetAllTypesWithAttribute<GameObjectAttribute>();
+            var monoBehaviours = TypeAttributeUtil.GetAllTypesWithAttribute<MonoBehaviourAttribute>();
+            var entityBehaviours = TypeAttributeUtil.GetAllTypesAndDataWithAttribute<EntityBehaviourAttribute>();
             var source =
 $@"using UnityEngine;
 using MessagePipe;
@@ -34,8 +35,12 @@ namespace akanevrc.TowerDefence
         .Select(settings => $@"[SerializeField] private {settings.GetTypeName()}[] {settings.GetArrayVarName()};")
         .ToLines(8)
     }{
-        gameObjects
-        .Select(gameObject => $@"[SerializeField] private {gameObject.GetTypeName()} {gameObject.GetVarName()};")
+        monoBehaviours
+        .Select(monoBehaviour => $@"[SerializeField] private {monoBehaviour.GetTypeName()} {monoBehaviour.GetVarName()};")
+        .ToLines(8)
+    }{
+        entityBehaviours
+        .Select(entityBehaviour => $@"[SerializeField] private {entityBehaviour.type.GetTypeName()} {entityBehaviour.type.GetVarName()};")
         .ToLines(8)
     }
 
@@ -80,8 +85,16 @@ namespace akanevrc.TowerDefence
             )
             .ToLines(12)
         }{
-            gameObjects
-            .Select(gameObject => $@"if ({gameObject.GetVarName()} != null) builder.RegisterComponent({gameObject.GetVarName()});")
+            monoBehaviours
+            .Select(monoBehaviour => $@"if ({monoBehaviour.GetVarName()} != null) builder.RegisterComponent({monoBehaviour.GetVarName()});")
+            .ToLines(12)
+        }{
+            entityBehaviours
+            .Select(entityBehaviour => $@"if ({entityBehaviour.type.GetVarName()} != null) builder.RegisterComponent({entityBehaviour.type.GetVarName()});")
+            .ToLines(12)
+        }{
+            entityBehaviours
+            .Select(entityBehaviour => $@"if ({entityBehaviour.type.GetVarName()} != null) builder.RegisterComponent<{entityBehaviour.type.GetEntityBehaviourTypeName(entityBehaviour.additionalData)}>({entityBehaviour.type.GetVarName()});")
             .ToLines(12)
         }
             builder.RegisterEntryPoint<MainEntryPoint>();

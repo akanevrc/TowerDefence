@@ -21,6 +21,12 @@ namespace akanevrc.TowerDefence
             return $"IEntityFactory<{name}, {name}Factory.FactoryParams>";
         }
 
+        public static string GetEntityBehaviourTypeName(this Type type, string kindTypeName)
+        {
+            var name = Regex.Replace(GetName(type), @"(.+)Behaviour", "$1");
+            return $"EntityBehaviour<{name}, {kindTypeName}>";
+        }
+
         public static string GetVarName(this Type type)
         {
             var name = GetName(type);

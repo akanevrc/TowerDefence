@@ -11,7 +11,8 @@ namespace akanevrc.TowerDefence
             var settingss = TypeAttributeUtil.GetAllTypesWithAttribute<SettingsAttribute>();
             var handlers = TypeAttributeUtil.GetAllTypesWithAttribute<HandlerAttribute>();
             var stageStores = TypeAttributeUtil.GetAllTypesWithAttribute<StageStoreAttribute>();
-            var gameObjects = TypeAttributeUtil.GetAllTypesWithAttribute<GameObjectAttribute>();
+            var monoBehaviours = TypeAttributeUtil.GetAllTypesWithAttribute<MonoBehaviourAttribute>();
+            var entityBehaviours = TypeAttributeUtil.GetAllTypesWithAttribute<EntityBehaviourAttribute>();
             var source =
 $@"using VContainer;
 using VContainer.Unity;
@@ -38,8 +39,8 @@ namespace akanevrc.TowerDefence
         .Select(stageStore => $@"[Inject] private readonly {stageStore.GetTypeName()} {stageStore.GetVarName()};")
         .ToLines(8)
     }{
-        gameObjects
-        .Select(gameObject => $@"[Inject] private readonly {gameObject.GetTypeName()} {gameObject.GetVarName()};")
+        monoBehaviours
+        .Select(monoBehaviour => $@"[Inject] private readonly {monoBehaviour.GetTypeName()} {monoBehaviour.GetVarName()};")
         .ToLines(8)
     }
 
@@ -63,8 +64,8 @@ namespace akanevrc.TowerDefence
             .Select(stageStore => $@"{stageStore.GetVarName()}?.Init(new StageNumber() {{ World = 1, Stage = 1 }});")
             .ToLines(12)
         }{
-            gameObjects
-            .Select(gameObject => $@"_resolver.Instantiate({gameObject.GetVarName()});")
+            monoBehaviours
+            .Select(monoBehaviour => $@"_resolver.Instantiate({monoBehaviour.GetVarName()});")
             .ToLines(12)
         }
             _stageScheduler.SetStage(new StageNumber() {{ World = 1, Stage = 1 }});
