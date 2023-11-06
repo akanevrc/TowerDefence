@@ -26,7 +26,6 @@ namespace akanevrc.TowerDefence
         }
 
         [Inject] private readonly SettingStore<BulletSetting.KindType, BulletSetting> _bulletSettingStore;
-        [Inject] private readonly IPublisher<EntityCreatedEvent<Bullet>> _bulletCreatedPub;
 
         public Entity<Bullet> Create(FactoryParams factoryParams)
         {
@@ -49,8 +48,6 @@ namespace akanevrc.TowerDefence
                     Angle = 0.0F
                 }
             };
-
-            _bulletCreatedPub.Publish(new EntityCreatedEvent<Bullet>(bullet.Id));
 
             return bullet;
         }

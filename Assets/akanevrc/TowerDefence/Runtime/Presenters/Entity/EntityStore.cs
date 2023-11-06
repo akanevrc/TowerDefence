@@ -16,6 +16,8 @@ namespace akanevrc.TowerDefence
         where TFactoryParams : struct
     {
         [Inject] private readonly IEntityFactory<T, TFactoryParams> _entityFactory;
+        
+        [Inject] private readonly IPublisher<EntityCreatedEvent<T>> _entityCreatedPub;
         [Inject] private readonly IPublisher<EntityDestroyingEvent<T>> _entityDestroyingPub;
 
         private List<Entity<T>> _entities = new();
@@ -40,6 +42,7 @@ namespace akanevrc.TowerDefence
             var entity = _entityFactory.Create(factoryParams);
             _entities.Add(entity);
             _idToIndex.Add(entity.Id, _entities.Count - 1);
+            _entityCreatedPub.Publish(new EntityCreatedEvent<T>(entity.Id));
             return entity;
         }
 
@@ -93,6 +96,11 @@ namespace akanevrc.TowerDefence
                 _idToIndex.Remove(entity.Id);
             }
             _entities.RemoveAll(entity => predicate(entity));
+            
+            foreach (var (id, index) in _entities.Select((entity, i) => (entity.Id, i)))
+            {
+                _idToIndex[id] = index;
+            }
         }
     }
 }

@@ -22,7 +22,6 @@ namespace akanevrc.TowerDefence
         }
 
         [Inject] private readonly SettingStore<StageNumber, GoalSetting> _goalSettingStore;
-        [Inject] private readonly IPublisher<EntityCreatedEvent<Goal>> _goalCreatedPub;
 
         public Entity<Goal> Create(FactoryParams factoryParams)
         {
@@ -42,8 +41,6 @@ namespace akanevrc.TowerDefence
                     Health = health
                 }
             };
-
-            _goalCreatedPub.Publish(new EntityCreatedEvent<Goal>(goal.Id));
 
             return goal;
         }

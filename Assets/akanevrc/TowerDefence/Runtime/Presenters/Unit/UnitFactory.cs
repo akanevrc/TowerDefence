@@ -23,14 +23,13 @@ namespace akanevrc.TowerDefence
 
         [Inject] private readonly SettingStore<UnitSetting.KindType, UnitSetting> _unitSettingStore;
         [Inject] private readonly UnitStateUpdater _unitStateUpdater;
-        [Inject] private readonly IPublisher<EntityCreatedEvent<Unit>> _unitCreatedPub;
 
         public Entity<Unit> Create(FactoryParams factoryParams)
         {
             var (attack, range) =
                 _unitSettingStore.Settings.TryGetValue(factoryParams.Kind, out var setting) ?
-                    (setting.Attacks[0], setting.Ranges[0]) :
-                    (1.0F, 1.0F);
+                    (setting.Attacks[1], setting.Ranges[1]) :
+                    (0.0F, 0.0F);
 
             var unit = new Entity<Unit>()
             {
@@ -41,17 +40,15 @@ namespace akanevrc.TowerDefence
                 Data = new Unit()
                 {
                     Action = default,
-                    TargetingStrategy = TargetingStrategy.FirstOrder,
+                    TargetingStrategy = TargetingStrategy.ClosestRange,
                     TargetId = Entity<Enemy>.None.Id,
-                    Level = 0,
+                    Level = 1,
                     Attack = attack,
                     Range = range,
                     PedestalId = Entity<Pedestal>.None.Id,
                 }
             };
             _unitStateUpdater.UpdateOnFirst(ref unit);
-
-            _unitCreatedPub.Publish(new EntityCreatedEvent<Unit>(unit.Id));
 
             return unit;
         }

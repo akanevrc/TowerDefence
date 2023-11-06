@@ -35,7 +35,7 @@ namespace akanevrc.TowerDefence
 
         private void OnEntityCreated(EntityCreatedEvent<T> ev)
         {
-            if (EntityStore.TryGet(ev.Id, out var entity)) return;
+            if (!EntityStore.TryGet(ev.Id, out var entity)) return;
 
             var z = typeof(T) == typeof(Pedestal) ? 50.0F : entity.Position.y;
 

@@ -23,7 +23,6 @@ namespace akanevrc.TowerDefence
         [Inject] private readonly SettingStore<EnemySetting.KindType, EnemySetting> _enemySettingStore;
         [Inject] private readonly StageStore _stageStore;
         [Inject] private readonly EnemyStateUpdater _enemyStateUpdater;
-        [Inject] private readonly IPublisher<EntityCreatedEvent<Enemy>> _enemyCreatedPub;
 
         public Entity<Enemy> Create(FactoryParams factoryParams)
         {
@@ -50,8 +49,6 @@ namespace akanevrc.TowerDefence
                 }
             };
             _enemyStateUpdater.UpdateOnFirst(ref enemy, _stageStore.Stage.Route, factoryParams.OffsetFactor);
-
-            _enemyCreatedPub.Publish(new EntityCreatedEvent<Enemy>(enemy.Id));
 
             return enemy;
         }

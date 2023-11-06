@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/akanevrc/TowerDefence/Runtime/UIs/MainUI.uss?fileID=7433441132597879392&amp;guid=435fdf333aa8a85409856bed692fbbc4&amp;type=3#MainUI" />
+    <ui:ScrollView name="scroll-view">
+        <ui:VisualElement name="ui-pane">
+            <ui:Label tabindex="-1" text="Not Selected" parse-escape-sequences="true" display-tooltip-when-elided="true" name="entity-name-label" style="color: rgb(255, 255, 255);" />
+            <ui:Button text="Level Up" parse-escape-sequences="true" display-tooltip-when-elided="true" name="level-up-button" />
+        </ui:VisualElement>
+    </ui:ScrollView>
+</ui:UXML>

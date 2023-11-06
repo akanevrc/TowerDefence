@@ -40,8 +40,8 @@ namespace akanevrc.TowerDefence
 
         private StageNumber _currentStage;
         private WaveNumber _currentWave;
-        private int _currentUnitId = Entity<Unit>.None.Id;
-        private int _currentBulletId = Entity<Bullet>.None.Id;
+        private int _currentUnitId = 0;
+        private int _currentBulletId = 0;
 
         private readonly DisposableBagBuilder _disposables = DisposableBag.CreateBuilder();
         private bool _disposed = false;
@@ -113,11 +113,11 @@ namespace akanevrc.TowerDefence
 
         private void OnUnitPlacing(UnitPlacingEvent ev)
         {
-            var unit = _unitStore.Add(new(_currentUnitId, ev.Kind.IntToKind<UnitSetting.KindType>(), ev.Position));
-            _currentUnitId++;
-
             if (_pedestalStore.TryGet(ev.PedestalId, out var pedestal))
             {
+                var unit = _unitStore.Add(new(_currentUnitId, ev.Kind.IntToKind<UnitSetting.KindType>(), pedestal.Position));
+                _currentUnitId++;
+
                 unit.Data.PedestalId = pedestal.Id;
                 pedestal.Data.UnitId = unit.Id;
             }

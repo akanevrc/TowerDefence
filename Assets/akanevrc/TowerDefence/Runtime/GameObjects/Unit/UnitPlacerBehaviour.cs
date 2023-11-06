@@ -11,14 +11,11 @@ namespace akanevrc.TowerDefence
         [Inject] private readonly EntityStore<Pedestal, PedestalFactory.FactoryParams> _pedestalStore;
         [Inject] private readonly IPublisher<UnitPlacingEvent> _unitPlacingPub;
 
-        private async void Start()
+        private void Start()
         {
-            await UniTask.Delay(1500);
-            
-            if (_pedestalStore.TryGet(PedestalSetting.KindType.Normal.KindToInt(), out var pedestal))
-            {
-                _unitPlacingPub.Publish(new UnitPlacingEvent(UnitSetting.KindType.Normal.KindToInt(), pedestal.Position, pedestal.Id));
-            }
+            _pedestalStore.Add(new PedestalFactory.FactoryParams(0, PedestalSetting.KindType.Normal, new Vector2(1, 2)));
+            _pedestalStore.Add(new PedestalFactory.FactoryParams(1, PedestalSetting.KindType.Normal, new Vector2(2, 3)));
+            _unitPlacingPub.Publish(new UnitPlacingEvent(UnitSetting.KindType.Normal.KindToInt(), 0));
         }
     }
 }

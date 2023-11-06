@@ -22,7 +22,6 @@ namespace akanevrc.TowerDefence
         }
 
         [Inject] private readonly SettingStore<PedestalSetting.KindType, PedestalSetting> _pedestalSettingStore;
-        [Inject] private readonly IPublisher<EntityCreatedEvent<Pedestal>> _pedestalCreatedPub;
 
         public Entity<Pedestal> Create(FactoryParams factoryParams)
         {
@@ -37,8 +36,6 @@ namespace akanevrc.TowerDefence
                     UnitId = Entity<Unit>.None.Id
                 }
             };
-
-            _pedestalCreatedPub.Publish(new EntityCreatedEvent<Pedestal>(pedestal.Id));
 
             return pedestal;
         }
