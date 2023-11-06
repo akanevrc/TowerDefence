@@ -45,7 +45,7 @@ namespace akanevrc.TowerDefence
                 new Vector3(entity.Position.x, entity.Position.y, z),
                 transform.rotation
             );
-            behaviour.Entity = entity;
+            behaviour.Id = ev.Id;
             Entities.TryAdd(ev.Id, behaviour);
 
             behaviour.Setting = SettingStore.Settings.TryGetValue(entity.Kind.IntToKind<TKind>(), out var setting) ? setting : null;

@@ -8,7 +8,7 @@ namespace akanevrc.TowerDefence
         where T : struct
         where TKind : struct
     {
-        [NonSerialized] public Entity<T> Entity;
+        [NonSerialized] public int Id;
         [NonSerialized] public IEntitySetting<TKind> Setting;
 
         void Start()
