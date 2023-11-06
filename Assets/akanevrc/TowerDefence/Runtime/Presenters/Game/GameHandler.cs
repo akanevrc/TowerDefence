@@ -65,8 +65,6 @@ namespace akanevrc.TowerDefence
 
         private void OnModelLoop(ModelLoopEvent ev)
         {
-            UnityEngine.Debug.Log("GameHandler.OnModelLoop");
-
             if (_currentStage.Equals(default(StageNumber)) && _currentWave.Equals(default(WaveNumber)))
             {
                 _gameStartingPub.Publish(new GameStartingEvent());

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e31fb7aef417ab42a6c78760ae79289, type: 3}
   m_Name: MainConfig
   m_EditorClassIdentifier: 
-  _modelLoopFrequency: 1
+  _modelLoopFrequency: 0.0078125
